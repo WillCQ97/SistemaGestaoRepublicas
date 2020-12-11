@@ -17,8 +17,12 @@ class MoradorDeRepublicaCollectionTest {
         MoradorDeRepublicaCollection.clear();
     }
 
+    /**
+     * Funçao <b>pessoaJaTemRepublica()</b>
+     * Deve retornar <b>Verdadeiro</b> caso uma pessoa já esteja associada a uma república
+     */
     @Test
-    void pessoaJaTemRepublica_RetornaTrue() {
+    void CT012() {
         Pessoa pessoa = PessoaFactory.createPessoa();
         MoradorDeRepublica morador = MoradorDeRepublicaFactory.createMoradorDeRepublica(pessoa);
 
@@ -29,8 +33,12 @@ class MoradorDeRepublicaCollectionTest {
         assertTrue(resultado);
     }
 
+    /**
+     * Funçao <b>pessoaJaTemRepublica()</b>
+     * Deve retornar <b>Falso</b> caso uma pessoa não esteja associada a uma república
+     */
     @Test
-    void pessoaJaTemRepublica_RetornaFalse() {
+    void CT013() {
         Pessoa pessoa1 = PessoaFactory.createPessoa();
         MoradorDeRepublica morador = MoradorDeRepublicaFactory.createMoradorDeRepublica(pessoa1);
 
@@ -43,8 +51,12 @@ class MoradorDeRepublicaCollectionTest {
         assertFalse(resultado);
     }
 
+    /**
+     * Funçao <b>pessoaJaTemRepublica()</b>
+     * Deve retornar <b>Falso</b> caso uma pessoa tenha uma república no histórico, mas não é atual.
+     */
     @Test
-    void pessoaJaTemRepublica_RetornaFalseCasoSejaHistorico() {
+    void CT014() {
         Pessoa pessoa = PessoaFactory.createPessoa();
         MoradorDeRepublica morador = MoradorDeRepublicaFactory.createMoradorDeRepublica(pessoa);
         morador.setAtual(false);
@@ -56,8 +68,12 @@ class MoradorDeRepublicaCollectionTest {
         assertFalse(resultado);
     }
 
+    /**
+     * Funçao <b>addMoradorDeRepublica()</b>
+     * Deve adicionar um novo MoradorDeRepublica à collection.
+     */
     @Test
-    void addMoradorDeRepbulica() {
+    void CT015() {
         MoradorDeRepublica moradorDeRepublica = MoradorDeRepublicaFactory.createMoradorDeRepublica();
         MoradorDeRepublicaCollection.addMoradorDeRepublica(moradorDeRepublica);
 
@@ -65,8 +81,12 @@ class MoradorDeRepublicaCollectionTest {
         assertTrue(resultado);
     }
 
+    /**
+     * Funçao <b>removerMoradorDeRepublica()</b>
+     * Deve remover um MoradorDeRepublica da collection pelo Id
+     */
     @Test
-    void removerMoradorDeRepbulica_peloId() {
+    void CT016() {
         MoradorDeRepublica moradorDeRepublica = MoradorDeRepublicaFactory.createMoradorDeRepublica();
         MoradorDeRepublicaCollection.addMoradorDeRepublica(moradorDeRepublica);
 
@@ -76,8 +96,13 @@ class MoradorDeRepublicaCollectionTest {
         assertFalse(resultado);
     }
 
+
+    /**
+     * Funçao <b>removerMoradorDeRepublica()</b>
+     * Deve remover um MoradorDeRepublica da collection pela referência
+     */
     @Test
-    void removerMoradorDeRepbulica_pelaReferencia() {
+    void CT017() {
         MoradorDeRepublica moradorDeRepublica = MoradorDeRepublicaFactory.createMoradorDeRepublica();
         MoradorDeRepublicaCollection.addMoradorDeRepublica(moradorDeRepublica);
 

@@ -27,7 +27,7 @@ class GerenciadorDespesasTest {
                 1000d,
                 "2020-12-17"
         );
-        assertEquals(moradorDeRepublica.getRepublica().getFluxoCaixa().get(0).getValor(), 1000);
+        assertEquals(1000, moradorDeRepublica.getRepublica().getFluxoCaixa().get(0).getValor());
 
     }
 
@@ -56,9 +56,9 @@ class GerenciadorDespesasTest {
         Despesa lancamento2 = (Despesa) fluxoCaixa.get(1);
         Despesa lancamento3 = (Despesa) fluxoCaixa.get(2);
 
-        assertEquals(lancamento1.getValor(), 1000);
-        assertEquals(lancamento2.getValor(), 1000);
-        assertEquals(lancamento3.getValor(), 1000);
+        assertEquals(1000, lancamento1.getValor());
+        assertEquals(1000, lancamento2.getValor());
+        assertEquals(1000, lancamento3.getValor());
 
         // Todo mudar para que sejam adicionados apenas semanas nas despesas?
         assertEquals(lancamento1.getDataVencimento(), novaDespesa.getDataVencimento());
@@ -92,9 +92,9 @@ class GerenciadorDespesasTest {
         Despesa lancamento2 = (Despesa) fluxoCaixa.get(1);
         Despesa lancamento3 = (Despesa) fluxoCaixa.get(2);
 
-        assertEquals(lancamento1.getValor(), 1000);
-        assertEquals(lancamento2.getValor(), 1000);
-        assertEquals(lancamento3.getValor(), 1000);
+        assertEquals(1000, lancamento1.getValor());
+        assertEquals(1000, lancamento2.getValor());
+        assertEquals(1000, lancamento3.getValor());
 
         assertEquals(lancamento1.getDataVencimento(), novaDespesa.getDataVencimento());
         assertEquals(lancamento2.getDataVencimento(), novaDespesa.getDataVencimento().plusMonths(1));

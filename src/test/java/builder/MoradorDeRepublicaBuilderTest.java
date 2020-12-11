@@ -23,7 +23,7 @@ class MoradorDeRepublicaBuilderTest {
      * BR 02 - Morador não pode residir em mais de uma república ao mesmo tempo
      */
     @Test
-    void addPessoa_lancaErro() {
+    void CT018() {
         Pessoa pessoa = PessoaFactory.createPessoa();
         MoradorDeRepublica moradorDeRepublica = MoradorDeRepublicaFactory.createMoradorDeRepublica(pessoa);
         MoradorDeRepublicaCollection.addMoradorDeRepublica(moradorDeRepublica);
@@ -38,4 +38,16 @@ class MoradorDeRepublicaBuilderTest {
         assertEquals(expectedMessage, actualMessage);
 
     }
+
+    /**
+     * Função <b>addPessoa()</b>
+     * Deve adicionar corretamente uma pessoa ao resultado final
+     */
+    @Test
+    void CT019() {
+        Pessoa pessoa = PessoaFactory.createPessoa();
+        this.builder.addPessoa(pessoa, false);
+        assertEquals(pessoa, this.builder.getResultado().getPessoa());
+    }
+
 }
