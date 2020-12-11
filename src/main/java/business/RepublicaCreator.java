@@ -21,56 +21,13 @@ public class RepublicaCreator {
     }
 
     /**
-     * Cria um república e associa à Pessoa que o criou, tornando-a administradora e removendo-a de outra república caso
-     * necessário.
-     * @param criador O Criador da república
-     * @param nome O nome da nova república
-     * @param vantagens Lista de vantagens da nova república
-     * @param vagas O número de vagas disponíveis
-     * @param receitaColetiva A receita coletiva inicial
-     * @param cep O CEP do endereço da república
-     * @param bairro O Bairro da repúbçica
-     * @param pontoReferencia O Ponto de referência da república
-     * @param latitude A latitude da localização da república
-     * @param longitude A longitude da localização da república
-     * @param codigoEtica O Código de ética da república
-     * @return A república criada
-     */
-    public static Republica createRepublica(
-            Pessoa criador,
-            String nome,
-            String[] vantagens,
-            int vagas,
-            double receitaColetiva,
-            String cep,
-            String bairro,
-            String pontoReferencia,
-            double latitude,
-            double longitude,
-            String codigoEtica
-                           ) {
-
-        Geolocation geolocation = new Geolocation(latitude, longitude);
-
-        Endereco endereco = new Endereco(cep, bairro, pontoReferencia, geolocation);
-
-        LocalDate dataFundacao = LocalDate.now();
-        ArrayList<String> listaVantagens = new ArrayList<>(Arrays.asList(vantagens));
-        Republica republica = new Republica(nome, dataFundacao, null, listaVantagens, endereco, vagas, receitaColetiva, codigoEtica);
-
-        return addRepublica(republica, criador);
-    }
-
-    /**
      *
      * @param criador O Criador da república
      * @param nome O nome da nova república
      * @param vantagens Lista de vantagens da nova república
      * @param vagas O número de vagas disponíveis
      * @param receitaColetiva A receita coletiva inicial
-     * @param cep O CEP do endereço da república
-     * @param bairro O Bairro da repúbçica
-     * @param pontoReferencia O Ponto de referência da república
+     * @param endereco O Endereço da república
      * @return A república criada
      */
     public static Republica createRepublica(
@@ -79,15 +36,18 @@ public class RepublicaCreator {
             String[] vantagens,
             int vagas,
             double receitaColetiva,
-            String cep,
-            String bairro,
-            String pontoReferencia
+            Endereco endereco
     ) {
 
-        Endereco endereco = new Endereco(cep, bairro, pontoReferencia);
         LocalDate dataFundacao = LocalDate.now();
         ArrayList<String> listaVantagens = new ArrayList<>(Arrays.asList(vantagens));
-        Republica republica = new Republica(nome, dataFundacao, null, listaVantagens, endereco, vagas, receitaColetiva);
+        Republica republica = new Republica()
+                .comNome(nome)
+                .comDataFundacao(dataFundacao)
+                .comVantagens(listaVantagens)
+                .comEndereco(endereco)
+                .comVagas(vagas)
+                .comReceitaColetiva(receitaColetiva);
         return addRepublica(republica, criador);
     }
 
@@ -104,7 +64,7 @@ public class RepublicaCreator {
         return republica;
     }
 
-    private static MoradorDeRepublica addMoradorDeRepublica(Republica republica, Pessoa criador) {
+    private static void addMoradorDeRepublica(Republica republica, Pessoa criador) {
         removerRepublicaAnterior(criador);
 
         MoradorDeRepublicaBuilder builder = new MoradorDeRepublicaBuilder();
@@ -113,8 +73,6 @@ public class RepublicaCreator {
         MoradorDeRepublica novoMoradorDeRepublica = builder.getResultado();
 
         MoradorDeRepublicaCollection.addMoradorDeRepublica(novoMoradorDeRepublica);
-
-        return novoMoradorDeRepublica;
     }
 
     /**

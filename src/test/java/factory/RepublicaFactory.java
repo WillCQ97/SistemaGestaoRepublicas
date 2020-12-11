@@ -18,16 +18,15 @@ public class RepublicaFactory {
     private static final Double RECEITA_COLETIVA = 0d;
 
     public static Republica createRepublica() {
-        return new Republica(
-                NOME,
-                DATA_FUNDACAO,
-                DATA_EXTINCAO,
-                VANTAGENS,
-                ENDERECO,
-                VAGAS,
-                RECEITA_COLETIVA,
-                CODIGO_DE_ETICA
-        );
+        return new Republica()
+                .comNome(NOME)
+                .comDataFundacao(DATA_FUNDACAO)
+                .comDataExtincao(DATA_EXTINCAO)
+                .comVantagens(VANTAGENS)
+                .comEndereco(ENDERECO)
+                .comVagas(VAGAS)
+                .comReceitaColetiva(RECEITA_COLETIVA)
+                .comCodigoEtica(CODIGO_DE_ETICA);
     }
 
 

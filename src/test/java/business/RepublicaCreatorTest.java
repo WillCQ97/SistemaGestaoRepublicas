@@ -2,8 +2,10 @@ package business;
 
 import collection.MoradorDeRepublicaCollection;
 import collection.RepublicaCollection;
+import factory.EnderecoFactory;
 import factory.MoradorDeRepublicaFactory;
 import factory.PessoaFactory;
+import model.Endereco;
 import model.MoradorDeRepublica;
 import model.Pessoa;
 import model.Republica;
@@ -22,16 +24,14 @@ class RepublicaCreatorTest {
     @Test
     void CT002() {
         Pessoa pessoa = PessoaFactory.createPessoa();
-
+        Endereco endereco = EnderecoFactory.createEndereco();
         Republica novaRepublica = RepublicaCreator.createRepublica(
                 pessoa,
                 "Republica Nova",
                 new String[]{"vantagem 1"},
                 5,
                 0d,
-                "29560-000",
-                "bairro",
-                "ponto de referencia"
+                endereco
         );
 
         assertTrue(RepublicaCollection.contemRepublica(novaRepublica));
@@ -44,16 +44,14 @@ class RepublicaCreatorTest {
     @Test
     void CT003() {
         Pessoa pessoa = PessoaFactory.createPessoa();
-
+        Endereco endereco = EnderecoFactory.createEndereco();
         Republica novaRepublica = RepublicaCreator.createRepublica(
                 pessoa,
                 "Republica Nova",
                 new String[]{"vantagem 1"},
                 5,
                 0d,
-                "29560-000",
-                "bairro",
-                "ponto de referencia"
+                endereco
         );
 
         assertTrue(MoradorDeRepublicaCollection.pessoaJaTemRepublica(pessoa));
@@ -66,16 +64,14 @@ class RepublicaCreatorTest {
     @Test
     void CT004() {
         Pessoa pessoa = PessoaFactory.createPessoa();
-
+        Endereco endereco = EnderecoFactory.createEndereco();
         Republica novaRepublica = RepublicaCreator.createRepublica(
                 pessoa,
                 "Republica Nova",
                 new String[]{"vantagem 1"},
                 5,
                 0d,
-                "29560-000",
-                "bairro",
-                "ponto de referencia"
+                endereco
         );
 
         Optional<MoradorDeRepublica> moradorDeRepublica = MoradorDeRepublicaCollection.getMoradorDeRepublica(pessoa);
@@ -93,16 +89,14 @@ class RepublicaCreatorTest {
         MoradorDeRepublicaCollection.addMoradorDeRepublica(moradorDeRepublica);
 
         Pessoa pessoa = moradorDeRepublica.getPessoa();
-
+        Endereco endereco = EnderecoFactory.createEndereco();
         Republica novaRepublica = RepublicaCreator.createRepublica(
                 pessoa,
                 "Republica Nova",
                 new String[]{"vantagem 1"},
                 5,
                 0d,
-                "29560-000",
-                "bairro",
-                "ponto de referencia"
+                endereco
         );
 
         Optional<MoradorDeRepublica> novoMoradorDeRepublica = MoradorDeRepublicaCollection.getMoradorDeRepublica(pessoa);
@@ -120,16 +114,14 @@ class RepublicaCreatorTest {
         MoradorDeRepublicaCollection.addMoradorDeRepublica(moradorDeRepublica);
 
         Pessoa pessoa = moradorDeRepublica.getPessoa();
-
+        Endereco endereco = EnderecoFactory.createEndereco();
         Republica novaRepublica = RepublicaCreator.createRepublica(
                 pessoa,
                 "Republica Nova",
                 new String[]{"vantagem 1"},
                 5,
                 0d,
-                "29560-000",
-                "bairro",
-                "ponto de referencia"
+                endereco
         );
 
         Optional<MoradorDeRepublica> novoMoradorDeRepublica = MoradorDeRepublicaCollection.getMoradorDeRepublica(pessoa);

@@ -91,26 +91,7 @@ public class Republica extends AbstractModel {
         this.receitaColetiva = receitaColetiva;
     }
 
-    /**
-     * Construtor com todas as informações
-     * @param nome Nome da república
-     * @param dataFundacao Data de fundação da república
-     * @param dataExtincao Data de Extinção da república
-     * @param vantagens Lista de vantagens da república
-     * @param endereco O Endereço da república
-     * @param vagas Número de vagas totais da república
-     * @param receitaColetiva Valor de saldo da república
-     * @param codigoEtica Código de ética da república.
-     */
-    public Republica(String nome, LocalDate dataFundacao, LocalDate dataExtincao, List<String> vantagens, Endereco endereco, Integer vagas, Double receitaColetiva, String codigoEtica) {
-        this.nome = nome;
-        this.dataFundacao = dataFundacao;
-        this.dataExtincao = dataExtincao;
-        this.setVantagens(vantagens);
-        this.endereco = endereco;
-        setVagas(vagas);
-        this.codigoEtica = codigoEtica;
-        setReceitaColetiva(receitaColetiva);
+    public Republica() {
         this.id = ++idCount;
     }
 
@@ -134,6 +115,46 @@ public class Republica extends AbstractModel {
         this.codigoEtica = "";
         setReceitaColetiva(receitaColetiva);
         this.id = ++idCount;
+    }
+
+    public Republica comNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
+
+    public Republica comDataFundacao(LocalDate dataFundacao) {
+        this.dataFundacao = dataFundacao;
+        return this;
+    }
+
+    public Republica comDataExtincao(LocalDate dataExtincao) {
+        this.dataExtincao = dataExtincao;
+        return this;
+    }
+
+    public Republica comVantagens(List<String> vantagens) {
+        this.vantagens = (ArrayList<String>) vantagens;
+        return this;
+    }
+
+    public Republica comEndereco(Endereco endereco) {
+        this.endereco = endereco;
+        return this;
+    }
+
+    public Republica comVagas(Integer vagas) {
+        this.vagas = vagas;
+        return this;
+    }
+
+    public Republica comReceitaColetiva(Double receitaColetiva) {
+        this.receitaColetiva = receitaColetiva;
+        return this;
+    }
+
+    public Republica comCodigoEtica(String codigoEtica) {
+        this.codigoEtica = codigoEtica;
+        return this;
     }
 
     public void adicionarAoFluxoDeCaixa(LancamentoValor novoLancamento) {

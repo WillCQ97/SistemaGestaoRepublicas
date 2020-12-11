@@ -80,35 +80,48 @@ public class Tarefa extends AbstractModel {
         this.excluida = excluida;
     }
 
-    /**
-     * Cria a tarefa e atribui apenas a um responsável.
-     * @param tipoTarefa
-     * @param descricao
-     * @param prazoFinal
-     * @param criadaPor
-     * @param responsavel
-     */
-    public Tarefa(String tipoTarefa, String descricao, String prazoFinal, MoradorDeRepublica criadaPor, MoradorDeRepublica responsavel) {
-        this.tipoTarefa = TipoTarefaEnum.valueOf(tipoTarefa.toUpperCase());
-        this.descricao = descricao;
-        this.dataAgendamento = LocalDate.now();
-        this.prazoFinal = LocalDate.parse(prazoFinal);
-        this.criadaPor = criadaPor;
-        this.excluida = false;
-        this.responsaveis.add(responsavel);
+    public Tarefa() {
         this.id = ++idCount;
     }
 
-    public Tarefa(TipoTarefaEnum tipoTarefa, String descricao, LocalDate dataAgendamento, LocalDate prazoFinal, LocalDate concluidaEm, MoradorDeRepublica criadaPor, Set<MoradorDeRepublica> responsaveis, boolean excluida) {
-        this.tipoTarefa = tipoTarefa;
+    public Tarefa doTipo(TipoTarefaEnum tipoTarefa) {
+        this.tipoTarefa =tipoTarefa;
+        return this;
+    }
+
+    public Tarefa comDescricao(String descricao) {
         this.descricao = descricao;
+        return this;
+    }
+
+    public Tarefa comDataAgendamento(LocalDate dataAgendamento) {
         this.dataAgendamento = dataAgendamento;
+        return this;
+    }
+
+    public Tarefa comPrazoFinal(LocalDate prazoFinal) {
         this.prazoFinal = prazoFinal;
+        return this;
+    }
+
+    public Tarefa concluidaEm(LocalDate concluidaEm) {
         this.concluidaEm = concluidaEm;
-        this.criadaPor = criadaPor;
+        return this;
+    }
+
+    public Tarefa criadaPor(MoradorDeRepublica moradorDeRepublica) {
+        this.criadaPor = moradorDeRepublica;
+        return this;
+    }
+
+    public Tarefa comResponsaveis(Set<MoradorDeRepublica> responsaveis) {
         this.responsaveis = (HashSet<MoradorDeRepublica>) responsaveis;
+        return this;
+    }
+
+    public Tarefa excluida(boolean excluida) {
         this.excluida = excluida;
-        this.id = ++idCount;
+        return this;
     }
 
     public void addResponsavel(MoradorDeRepublica novoResponsavel) {
