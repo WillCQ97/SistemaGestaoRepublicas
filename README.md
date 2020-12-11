@@ -1,8 +1,5 @@
 # GerenciamentoRepublica
-Atividade de Gestão de Qualidade para Implementação de um programa de Gestão de Repúblicas
+Trabalho Final de Gestão de Qualidade: Gerenciamento de Republicas
 
 
-COD_ATIVIDADE: GQS_República_002
-
-
-Discente: Thiago Ribeiro Valentim Martins
+Discentes: Thiago Ribeiro Valentim Martins, Miqueas Amorim Teixeira, William Conceição.
