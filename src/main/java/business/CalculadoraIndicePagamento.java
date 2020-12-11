@@ -11,6 +11,10 @@ import java.util.stream.Collectors;
 
 public class CalculadoraIndicePagamento {
 
+    private CalculadoraIndicePagamento() {
+
+    }
+
     public static double calcularMediaIndiceCompromissoDePagamento(MoradorDeRepublica moradorDeRepublica) {
         ArrayList<Despesa> despesas =
                 moradorDeRepublica
@@ -57,7 +61,7 @@ public class CalculadoraIndicePagamento {
     private static double getIndiceCompromissoPagamento(MoradorDeRepublica moradorDeRepublica, Despesa despesa) {
         LocalDate diaDoVencimento = despesa.getDataVencimento();
         Optional<LocalDate> dataPagamento = despesa.getDataPagamentoDeMorador(moradorDeRepublica);
-        if (!dataPagamento.isPresent()) return 0d;
+        if (dataPagamento.isEmpty()) return 0d;
 
         int diferencaEmDias = diaDoVencimento.until(dataPagamento.get()).getDays();
 

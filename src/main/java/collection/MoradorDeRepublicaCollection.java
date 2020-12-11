@@ -5,13 +5,18 @@ import model.Pessoa;
 import model.Republica;
 
 import java.util.Optional;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class MoradorDeRepublicaCollection {
+    private MoradorDeRepublicaCollection() {
+
+    }
+
     private static final TreeSet<MoradorDeRepublica> MORADORES_DE_REPUBLICAS = new TreeSet<>();
 
-    public static TreeSet<MoradorDeRepublica> getMoradoresDeRepublicas() {
+    public static SortedSet<MoradorDeRepublica> getMoradoresDeRepublicas() {
         return MORADORES_DE_REPUBLICAS;
     }
 
@@ -30,9 +35,9 @@ public class MoradorDeRepublicaCollection {
     /**
      * Lista as moradias de uma determinada pessoa
      * @param pessoa
-     * @return
+     * @return Lista de moradias de uma pessoa
      */
-    public static TreeSet<MoradorDeRepublica> listarMoradias(Pessoa pessoa) {
+    public static SortedSet<MoradorDeRepublica> listarMoradias(Pessoa pessoa) {
         return MORADORES_DE_REPUBLICAS
                 .stream()
                 .filter(morador -> morador.getPessoa().equals(pessoa))
@@ -45,11 +50,10 @@ public class MoradorDeRepublicaCollection {
         MORADORES_DE_REPUBLICAS.clear();
     }
 
-    public static Boolean pessoaJaTemRepublica(Pessoa pessoa) {
+    public static boolean pessoaJaTemRepublica(Pessoa pessoa) {
         for (MoradorDeRepublica morador: MORADORES_DE_REPUBLICAS) {
-            if (morador.getPessoa().equals(pessoa) && morador.getAtual()) {
+            if (morador.getPessoa().equals(pessoa) && morador.getAtual())
                 return true;
-            };
         }
         return false;
     }

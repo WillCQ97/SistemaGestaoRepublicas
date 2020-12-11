@@ -17,9 +17,9 @@ public class MoradorDeRepublicaBuilder {
         this.resultado = new MoradorDeRepublica();
     }
 
-    public void addPessoa(Pessoa pessoa, Boolean administrador) {
+    public void addPessoa(Pessoa pessoa, boolean administrador) {
         if (MoradorDeRepublicaCollection.pessoaJaTemRepublica(pessoa)) {
-            throw new RuntimeException("A Pessoa " + pessoa.getNome() + " já está em uma república!");
+            throw new IllegalArgumentException("A Pessoa " + pessoa.getNome() + " já está em uma república!");
         }
         this.resultado.setPessoa(pessoa);
         this.resultado.setAtual(true);

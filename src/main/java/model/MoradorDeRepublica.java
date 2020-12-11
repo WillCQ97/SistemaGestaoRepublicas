@@ -31,7 +31,7 @@ public class MoradorDeRepublica extends AbstractModel{
         this.republica = republica;
     }
 
-    public Boolean getAtual() {
+    public boolean getAtual() {
         return atual;
     }
 
@@ -97,4 +97,18 @@ public class MoradorDeRepublica extends AbstractModel{
         return indiceCompromissoPagamento + indiceRealizacaoTarefas + indiceSolucaoReclamacoes;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MoradorDeRepublica)) return false;
+        if (!super.equals(o)) return false;
+
+        MoradorDeRepublica that = (MoradorDeRepublica) o;
+        return this.id == that.getId();
+    }
+
+    @Override
+    public int hashCode() {
+       return super.hashCode();
+    }
 }

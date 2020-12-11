@@ -48,9 +48,9 @@ class GerenciadorDespesasTest {
                 "2020-12-17"
         );
 
-        ArrayList<LancamentoValor> fluxoCaixa = moradorDeRepublica.getRepublica().getFluxoCaixa();
+        ArrayList<LancamentoValor> fluxoCaixa = (ArrayList<LancamentoValor>) moradorDeRepublica.getRepublica().getFluxoCaixa();
 
-        assertEquals(fluxoCaixa.size(), 3);
+        assertEquals(3, fluxoCaixa.size());
 
         Despesa lancamento1 = (Despesa) fluxoCaixa.get(0);
         Despesa lancamento2 = (Despesa) fluxoCaixa.get(1);
@@ -84,9 +84,9 @@ class GerenciadorDespesasTest {
                 "2020-12-17"
         );
 
-        ArrayList<LancamentoValor> fluxoCaixa = moradorDeRepublica.getRepublica().getFluxoCaixa();
+        ArrayList<LancamentoValor> fluxoCaixa = (ArrayList<LancamentoValor>) moradorDeRepublica.getRepublica().getFluxoCaixa();
 
-        assertEquals(fluxoCaixa.size(), 3);
+        assertEquals(3, fluxoCaixa.size());
 
         Despesa lancamento1 = (Despesa) fluxoCaixa.get(0);
         Despesa lancamento2 = (Despesa) fluxoCaixa.get(1);

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Pessoa extends AbstractModel {
     private static int idCount = 0;
@@ -43,12 +44,12 @@ public class Pessoa extends AbstractModel {
         this.linkRedeSocial = linkRedeSocial;
     }
 
-    public ArrayList<String> getNumeroResponsaveis() {
+    public List<String> getNumeroResponsaveis() {
         return numeroResponsaveis;
     }
 
-    public void setNumeroResponsaveis(ArrayList<String> numeroResponsaveis) {
-        this.numeroResponsaveis = numeroResponsaveis;
+    public void setNumeroResponsaveis(List<String> numeroResponsaveis) {
+        this.numeroResponsaveis = (ArrayList<String>) numeroResponsaveis;
     }
 
     public Pessoa(String nome, String apelido, String telefone, String linkRedeSocial, String numeroResponsavel1, String numeroResponsavel2) {
@@ -62,8 +63,18 @@ public class Pessoa extends AbstractModel {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pessoa)) return false;
+        if (!super.equals(o)) return false;
 
+        Pessoa pessoa = (Pessoa) o;
+        return pessoa.id == this.id;
+    }
 
-
-
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

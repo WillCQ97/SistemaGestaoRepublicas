@@ -6,9 +6,14 @@ import model.Tarefa;
 
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class CalculadoraIndiceTarefas {
+
+    private CalculadoraIndiceTarefas() {
+
+    }
 
     /**
      * Calcula o IRT para um mês específico
@@ -18,7 +23,7 @@ public class CalculadoraIndiceTarefas {
      * @return O Índice de Realização de Tarefas de um mês e ano específicos
      */
     public static double getIndiceRealizacaoTarefasComuns(MoradorDeRepublica moradorDeRepublica, int mesReferencia, int anoReferencia) {
-        ArrayList<Tarefa> tarefasComuns = TarefaCollection.getTarefasComunsDeMorador(moradorDeRepublica);
+        List<Tarefa> tarefasComuns = TarefaCollection.getTarefasComunsDeMorador(moradorDeRepublica);
         return getIndiceRealizacaoTarefas(tarefasComuns, mesReferencia, anoReferencia);
     }
 
@@ -29,7 +34,7 @@ public class CalculadoraIndiceTarefas {
      * @return O Índice de Realização de Tarefas de todos os meses
      */
     public static double getIndiceRealizacaoTarefasComuns(MoradorDeRepublica moradorDeRepublica) {
-        ArrayList<Tarefa> tarefasComuns = TarefaCollection.getTarefasComunsDeMorador(moradorDeRepublica);
+        List<Tarefa> tarefasComuns = TarefaCollection.getTarefasComunsDeMorador(moradorDeRepublica);
         return getIndiceRealizacaoTarefas(tarefasComuns);
     }
 
@@ -41,7 +46,7 @@ public class CalculadoraIndiceTarefas {
      * @return O índice de Solução de Reclamações de um mês e ano específicos
      */
     public static double getIndiceSolucaoReclamacoes(MoradorDeRepublica moradorDeRepublica, int mesReferencia, int anoReferencia) {
-        ArrayList<Tarefa> reclamacoes = TarefaCollection.getReclamacoesDeMorador(moradorDeRepublica);
+        List<Tarefa> reclamacoes = TarefaCollection.getReclamacoesDeMorador(moradorDeRepublica);
         return getIndiceRealizacaoTarefas(reclamacoes, mesReferencia, anoReferencia);
     }
 
@@ -51,11 +56,11 @@ public class CalculadoraIndiceTarefas {
      * @return O índice de Solução de Reclamações de todos os meses
      */
     public static double getIndiceSolucaoReclamacoes(MoradorDeRepublica moradorDeRepublica) {
-        ArrayList<Tarefa> reclamacoes = TarefaCollection.getReclamacoesDeMorador(moradorDeRepublica);
+        List<Tarefa> reclamacoes = TarefaCollection.getReclamacoesDeMorador(moradorDeRepublica);
         return getIndiceRealizacaoTarefas(reclamacoes);
     }
 
-    private static double getIndiceRealizacaoTarefas(ArrayList<Tarefa> tarefas, int mesReferencia, int anoReferencia) {
+    private static double getIndiceRealizacaoTarefas(List<Tarefa> tarefas, int mesReferencia, int anoReferencia) {
         ArrayList<Tarefa> tarefasConcluidas =
                 tarefas
                         .stream()
@@ -74,7 +79,7 @@ public class CalculadoraIndiceTarefas {
         return (double) tarefasConcluidas.size() / tarefas.size();
     }
 
-    private static double getIndiceRealizacaoTarefas(ArrayList<Tarefa> tarefas) {
+    private static double getIndiceRealizacaoTarefas(List<Tarefa> tarefas) {
         ArrayList<Tarefa> tarefasConcluidas =
                 tarefas
                         .stream()

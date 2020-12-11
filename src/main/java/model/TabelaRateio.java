@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -10,9 +11,9 @@ import java.util.Optional;
 
 public class TabelaRateio extends AbstractModel {
     private static int idCount = 0;
-    private ArrayList<ParticipacaoMorador> paritipacaoMoradores = new ArrayList<>();
+    private final ArrayList<ParticipacaoMorador> paritipacaoMoradores = new ArrayList<>();
 
-    public ArrayList<ParticipacaoMorador> getParitipacaoMoradores() {
+    public List<ParticipacaoMorador> getParitipacaoMoradores() {
         return paritipacaoMoradores;
     }
 
@@ -44,7 +45,7 @@ public class TabelaRateio extends AbstractModel {
                 .filter(participacaoMorador -> participacaoMorador.getMoradorDeRepublica().getPessoa().equals(participante))
                 .findFirst();
 
-        if (!participacaoDoMorador.isPresent()) return 0d;
+        if (participacaoDoMorador.isEmpty()) return 0d;
 
         double totalAmount = this.getValorTotal();
         return participacaoDoMorador.get().getValorContribuido() / totalAmount;
@@ -73,7 +74,7 @@ public class TabelaRateio extends AbstractModel {
 
     public boolean confirmarPagamentoDeMorador(MoradorDeRepublica moradorDeRepublica, LocalDate dataPagamento) {
         Optional<ParticipacaoMorador> participacaoMorador = this.getPagamentoMorador(moradorDeRepublica);
-        if (!participacaoMorador.isPresent()) return false;
+        if (participacaoMorador.isEmpty()) return false;
 
         participacaoMorador.get().setDataPagamento(dataPagamento);
         return true;
@@ -84,5 +85,21 @@ public class TabelaRateio extends AbstractModel {
         return "TabelaRateio{" +
                 "paritipacaoMoradores=" + paritipacaoMoradores +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TabelaRateio)) return false;
+        if (!super.equals(o)) return false;
+
+        TabelaRateio that = (TabelaRateio) o;
+
+        return this.id == that.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

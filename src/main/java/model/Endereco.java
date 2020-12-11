@@ -56,5 +56,19 @@ public class Endereco extends AbstractModel {
         this.id = ++idCount;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Endereco)) return false;
+        if (!super.equals(o)) return false;
 
+        Endereco endereco = (Endereco) o;
+
+       return this.id == endereco.getId();
+    }
+
+    @Override
+    public int hashCode() {
+       return super.hashCode();
+    }
 }

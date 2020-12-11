@@ -4,18 +4,22 @@ import collection.MoradorDeRepublicaCollection;
 import model.HistoricoMorador;
 import model.MoradorDeRepublica;
 
-import java.util.TreeSet;
+import java.util.SortedSet;
 
 /**
  * Gera um histórico de um morador para um outro morador
  */
 public class GeradorHistorico {
 
+    private GeradorHistorico() {
+
+    }
+
     public static HistoricoMorador getHistorico(MoradorDeRepublica requerente, MoradorDeRepublica observado) throws IllegalAccessException {
         if (!moraNaMesmaRepublica(requerente, observado))
             throw new IllegalAccessException("O requerente deve morar na mesma república para ver o histórico de um morador");
 
-        TreeSet<MoradorDeRepublica> moradiasDoObservado = MoradorDeRepublicaCollection.listarMoradias(observado.getPessoa());
+        SortedSet<MoradorDeRepublica> moradiasDoObservado = MoradorDeRepublicaCollection.listarMoradias(observado.getPessoa());
         return new HistoricoMorador(moradiasDoObservado);
     }
 

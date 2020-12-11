@@ -26,9 +26,9 @@ class TabelaRateioTest {
         double porcentagemPaga2 = tabelaRateio.getPorcentagemPaga(moradorDeRepublica2.getPessoa());
         double porcentagemPaga3 = tabelaRateio.getPorcentagemPaga(moradorDeRepublica3.getPessoa());
 
-        assertEquals(porcentagemPaga1, 0.2d, 0.01);
-        assertEquals(porcentagemPaga2, 0.5d, 0.01);
-        assertEquals(porcentagemPaga3, 0.3d, 0.01);
+        assertEquals(0.2d, porcentagemPaga1,  0.01);
+        assertEquals(0.5d, porcentagemPaga2, 0.01);
+        assertEquals(0.3d, porcentagemPaga3, 0.01);
 
 
     }

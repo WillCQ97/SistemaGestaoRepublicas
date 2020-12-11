@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Classe que representa Tarefas, Sugestões e Reclamações. Cada variante dessas é representada
@@ -23,7 +24,7 @@ public class Tarefa extends AbstractModel {
         return tipoTarefa;
     }
 
-    public HashSet<MoradorDeRepublica> getResponsaveis() {
+    public Set<MoradorDeRepublica> getResponsaveis() {
         return responsaveis;
     }
 
@@ -98,14 +99,14 @@ public class Tarefa extends AbstractModel {
         this.id = ++idCount;
     }
 
-    public Tarefa(TipoTarefaEnum tipoTarefa, String descricao, LocalDate dataAgendamento, LocalDate prazoFinal, LocalDate concluidaEm, MoradorDeRepublica criadaPor, HashSet<MoradorDeRepublica> responsaveis, boolean excluida) {
+    public Tarefa(TipoTarefaEnum tipoTarefa, String descricao, LocalDate dataAgendamento, LocalDate prazoFinal, LocalDate concluidaEm, MoradorDeRepublica criadaPor, Set<MoradorDeRepublica> responsaveis, boolean excluida) {
         this.tipoTarefa = tipoTarefa;
         this.descricao = descricao;
         this.dataAgendamento = dataAgendamento;
         this.prazoFinal = prazoFinal;
         this.concluidaEm = concluidaEm;
         this.criadaPor = criadaPor;
-        this.responsaveis = responsaveis;
+        this.responsaveis = (HashSet<MoradorDeRepublica>) responsaveis;
         this.excluida = excluida;
         this.id = ++idCount;
     }
@@ -122,5 +123,18 @@ public class Tarefa extends AbstractModel {
         this.setConcluidaEm(LocalDate.now());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Tarefa)) return false;
+        if (!super.equals(o)) return false;
 
+        Tarefa tarefa = (Tarefa) o;
+        return this.id == tarefa.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

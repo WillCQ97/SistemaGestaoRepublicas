@@ -1,18 +1,25 @@
 package model;
 
-public class AbstractModel implements Comparable {
+import java.util.Objects;
+
+public class AbstractModel implements Comparable<Object> {
 
     protected int id;
 
     @Override
     public boolean equals(Object obj) {
-        if ((obj.getClass() != this.getClass()) ) {
+        if ((obj == null || obj.getClass() != this.getClass()) ) {
             return false;
         }
 
         AbstractModel castedObject = (AbstractModel) obj;
 
         return castedObject.getId() == this.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     public int getId() {

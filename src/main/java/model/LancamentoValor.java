@@ -67,4 +67,19 @@ public class LancamentoValor extends AbstractModel{
         this.aprovado = aprovado;
         this.dataLancamento = dataLancamento;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LancamentoValor)) return false;
+        if (!super.equals(o)) return false;
+
+        LancamentoValor that = (LancamentoValor) o;
+        return this.id == that.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

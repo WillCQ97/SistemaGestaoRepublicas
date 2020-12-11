@@ -4,8 +4,9 @@ import collection.MoradorDeRepublicaCollection;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Republica extends AbstractModel{
+public class Republica extends AbstractModel {
     private static int idCount = 0;
 
     private String nome;
@@ -16,12 +17,13 @@ public class Republica extends AbstractModel{
     private Integer vagas;
     private String codigoEtica;
     private Double receitaColetiva = 0d;
+    private final ArrayList<LancamentoValor> fluxoCaixa = new ArrayList<>();
 
-    public ArrayList<LancamentoValor> getFluxoCaixa() {
+    public List<LancamentoValor> getFluxoCaixa() {
         return fluxoCaixa;
     }
 
-    private ArrayList<LancamentoValor> fluxoCaixa = new ArrayList<>();
+
 
     public String getNome() {
         return nome;
@@ -47,12 +49,12 @@ public class Republica extends AbstractModel{
         this.dataExtincao = dataExtincao;
     }
 
-    public ArrayList<String> getVantagens() {
+    public List<String> getVantagens() {
         return vantagens;
     }
 
-    public void setVantagens(ArrayList<String> vantagens) {
-        this.vantagens = vantagens;
+    public void setVantagens(List<String> vantagens) {
+        this.vantagens = (ArrayList<String>) vantagens;
     }
 
     public Endereco getEndereco() {
@@ -100,11 +102,11 @@ public class Republica extends AbstractModel{
      * @param receitaColetiva Valor de saldo da república
      * @param codigoEtica Código de ética da república.
      */
-    public Republica(String nome, LocalDate dataFundacao, LocalDate dataExtincao, ArrayList<String> vantagens, Endereco endereco, Integer vagas, Double receitaColetiva, String codigoEtica) {
+    public Republica(String nome, LocalDate dataFundacao, LocalDate dataExtincao, List<String> vantagens, Endereco endereco, Integer vagas, Double receitaColetiva, String codigoEtica) {
         this.nome = nome;
         this.dataFundacao = dataFundacao;
         this.dataExtincao = dataExtincao;
-        this.vantagens = vantagens;
+        this.setVantagens(vantagens);
         this.endereco = endereco;
         setVagas(vagas);
         this.codigoEtica = codigoEtica;
@@ -122,11 +124,11 @@ public class Republica extends AbstractModel{
      * @param vagas Número de vagas totais da república
      * @param receitaColetiva Valor de saldo da república
      */
-    public Republica(String nome, LocalDate dataFundacao, LocalDate dataExtincao, ArrayList<String> vantagens, Endereco endereco, Integer vagas, Double receitaColetiva) {
+    public Republica(String nome, LocalDate dataFundacao, LocalDate dataExtincao, List<String> vantagens, Endereco endereco, Integer vagas, Double receitaColetiva) {
         this.nome = nome;
         this.dataFundacao = dataFundacao;
         this.dataExtincao = dataExtincao;
-        this.vantagens = vantagens;
+        this.setVantagens(vantagens);
         this.endereco = endereco;
         setVagas(vagas);
         this.codigoEtica = "";
@@ -151,4 +153,19 @@ public class Republica extends AbstractModel{
         return this.vagas - (int) moradores;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Republica)) return false;
+        if (!super.equals(o)) return false;
+
+        Republica republica = (Republica) o;
+
+        return this.id == republica.getId();
+    }
+
+    @Override
+    public int hashCode() {
+       return super.hashCode();
+    }
 }

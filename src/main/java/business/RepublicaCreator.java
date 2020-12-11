@@ -16,6 +16,10 @@ import java.util.Optional;
  */
 public class RepublicaCreator {
 
+    private RepublicaCreator() {
+
+    }
+
     /**
      * Cria um república e associa à Pessoa que o criou, tornando-a administradora e removendo-a de outra república caso
      * necessário.
@@ -98,7 +102,7 @@ public class RepublicaCreator {
         addMoradorDeRepublica(republica, criador);
         RepublicaCollection.addRepublica(republica);
         return republica;
-    };
+    }
 
     private static MoradorDeRepublica addMoradorDeRepublica(Republica republica, Pessoa criador) {
         removerRepublicaAnterior(criador);

@@ -1,7 +1,7 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -42,7 +42,7 @@ public class Despesa extends LancamentoValor {
     public void adicionarParticipanteDeRateio(MoradorDeRepublica participante, double valor) {
         double valorTotalAtual = this.tabelaRateio.getValorTotal();
         if (valorTotalAtual + valor > this.valor) {
-            throw new RuntimeException("Não é possível adicionar o valor "
+            throw new IllegalArgumentException("Não é possível adicionar o valor "
                     + valor
                     + " pois excede o valor total da despesa (" + valorTotalAtual + ")"
             );
@@ -73,13 +73,13 @@ public class Despesa extends LancamentoValor {
         );
     }
 
-    public ArrayList<MoradorDeRepublica> getParticipantes() {
+    public List<MoradorDeRepublica> getParticipantes() {
         return this.tabelaRateio
                 .getParitipacaoMoradores()
                 .stream()
                 .map(ParticipacaoMorador::getMoradorDeRepublica)
                 .collect(Collectors
-                .toCollection(ArrayList::new)
+                .toList()
                 );
     }
 
@@ -90,5 +90,21 @@ public class Despesa extends LancamentoValor {
         if (pagamentoMorador.isPresent()) resultado = Optional.of(pagamentoMorador.get().getDataPagamento());
 
         return resultado;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Despesa)) return false;
+        if (!super.equals(o)) return false;
+
+        Despesa despesa = (Despesa) o;
+
+        return this.id == despesa.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

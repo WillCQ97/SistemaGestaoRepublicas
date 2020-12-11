@@ -2,13 +2,18 @@ package collection;
 
 import model.Republica;
 
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class RepublicaCollection {
 
+    private RepublicaCollection() {
+
+    }
+
     private static final TreeSet<Republica> REPUBLICAS = new TreeSet<>();
 
-    public static TreeSet<Republica> getRepublicas() {
+    public static SortedSet<Republica> getRepublicas() {
         return REPUBLICAS;
     }
 
